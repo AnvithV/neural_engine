@@ -1,7 +1,7 @@
 # Neural Language Model 
 
-## TL;DR — We taught a tiny neural net to guess the next word (and it works!)
-- We trained simple word embeddings on old books/news
+## TL;DR — I taught a tiny neural net to guess the next word (and it works!)
+- I trained simple word embeddings on old books/news
 - Two-word context goes into a lightweight MLP that predicts what comes next.
 - It prefers real sentences over shuffled ones (lower surprisal) and can babble plausible-ish text.
 - Everything is scriptable: train, evaluate, and export a PDF report with one-liners.
