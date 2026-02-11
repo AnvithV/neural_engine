@@ -15,7 +15,7 @@ This project trains a small neural language model on a classic-corpora dataset a
 - Generates example sentences from the trained model.
 
 ## Data sources
-- Text: NLTK `brown`, `gutenberg`, and `reuters` corpora (see `bigger_corpus.py`). Run `python bigger_corpus.py > bigger.txt` to regenerate the combined corpus.
+- Text: NLTK `brown`, `gutenberg`, and `reuters` corpora (see `bigger_corpus.py`). Run `python3 bigger_corpus.py > bigger.txt` to regenerate the combined corpus.
 - Embeddings: 100-dim skip-gram word2vec trained via `train_embeddings.sh` to produce `vec.txt` (window=4, negative=5, iter=100). Vocabulary saved to `vocab.txt`.
 - Sentence splits: `sentences_train`, `sentences_validation`, `sentences_test` provided in the repo.
 
@@ -25,9 +25,9 @@ This project trains a small neural language model on a classic-corpora dataset a
    bash train_embeddings.sh
    ```
    (Requires the `word2vec` binary installed and NLTK corpora downloaded.)
-2. **Language model:** Use `final_language_model.py` to train and evaluate:
+2. **Language model:** Use `neural_language_model.py` to train and evaluate:
    ```
-   python final_language_model.py \
+   python3 neural_language_model.py \
      --activation tanh \
      --hidden-layers 100 \
      --epochs 10 \
@@ -51,8 +51,7 @@ This project trains a small neural language model on a classic-corpora dataset a
   ```
 
 ## Repository layout
-- `final_language_model.py` — CLI script version of the notebook.
-- `final_language_model.ipynb` — original exploratory notebook.
+- `neural_language_model.py` — CLI training/eval entrypoint.
 - `bigger_corpus.py` — emits text from NLTK corpora for word2vec training.
 - `train_embeddings.sh` — trains word2vec embeddings to `vec.txt`.
 - `run_word2vec.sh`, `word2vec_training.txt`, `vocab.txt`, `embeddings.txt` — earlier embedding experiments.
@@ -64,4 +63,3 @@ This project trains a small neural language model on a classic-corpora dataset a
 - NLTK corpora: Brown, Gutenberg, Reuters (download via `nltk.download()` if not present).
 - `word2vec` command-line tool for embedding training.
 - `pandoc` + LaTeX for PDF export (optional).
-

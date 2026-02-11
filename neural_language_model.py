@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """
-Port of final_language_model.ipynb into a standalone Python script.
-
-This script trains a simple neural language model using fixed word2vec
-embeddings (see train_embeddings.sh) and evaluates it on held-out data.
+Standalone script to train a simple neural language model using fixed word2vec
+embeddings (see train_embeddings.sh) and evaluate it on held-out data.
 It also exposes helper routines for surprisal analysis and sampling so
-you can reproduce the notebook results from the command line.
+you can reproduce the results from the command line.
 """
 
 from __future__ import annotations
@@ -381,4 +379,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
