@@ -5,7 +5,7 @@ This report documents data sources, model design, hyperparameter sweeps, surpris
 ## Data and Embeddings
 - Corpora: NLTK `brown`, `gutenberg`, and `reuters`, concatenated via `bigger_corpus.py` to produce `bigger.txt`.
 - Embeddings: 100-dim skip-gram word2vec trained with `train_embeddings.sh` (`vec.txt`). Settings: window=4, negative=5, iter=100, min-count implicit in word2vec defaults.
-- Sentence splits: `sentences_train`, `sentences_validation`, and `sentences_test` provided with the project.
+- Sentence splits: `sentences_train.txt`, `sentences_validation.txt`, and `sentences_test.txt` provided with the project.
 
 ## Model
 - Architecture: MLPClassifier that consumes the embeddings of the two previous tokens (concatenated, 200 dims) and predicts the next token id.
@@ -42,7 +42,7 @@ sample 20: in , 145 . <UNK> those walk billion went in for long new disclosed
 These illustrate the model’s tendency to emit fluent local structures but limited global coherence given the small architecture and dataset size.
 
 ## How to Reproduce
-1. Ensure `vec.txt`, `sentences_train`, `sentences_validation`, and `sentences_test` are present (regenerate embeddings with `train_embeddings.sh` after running `python3 bigger_corpus.py > bigger.txt` if needed).
+1. Ensure `vec.txt`, `sentences_train.txt`, `sentences_validation.txt`, and `sentences_test.txt` are present (regenerate embeddings with `train_embeddings.sh` after running `python3 bigger_corpus.py > bigger.txt` if needed).
 2. Train and evaluate the best run from the sweep:
    ```
    python3 neural_language_model.py --activation tanh --hidden-layers 100 --epochs 10 --report-json reports/latest_run.json

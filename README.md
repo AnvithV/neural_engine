@@ -17,7 +17,7 @@ This project trains a small neural language model on a classic-corpora dataset a
 ## Data sources
 - Text: NLTK `brown`, `gutenberg`, and `reuters` corpora (see `bigger_corpus.py`). Run `python3 bigger_corpus.py > bigger.txt` to regenerate the combined corpus.
 - Embeddings: 100-dim skip-gram word2vec trained via `train_embeddings.sh` to produce `vec.txt` (window=4, negative=5, iter=100). Vocabulary saved to `vocab.txt`.
-- Sentence splits: `sentences_train`, `sentences_validation`, `sentences_test` provided in the repo.
+- Sentence splits: `sentences_train.txt`, `sentences_validation.txt`, `sentences_test.txt` provided in the repo.
 
 ## How it was accomplished
 1. **Embeddings:** Train word2vec on `bigger.txt`:
@@ -55,7 +55,7 @@ This project trains a small neural language model on a classic-corpora dataset a
 - `bigger_corpus.py` — emits text from NLTK corpora for word2vec training.
 - `train_embeddings.sh` — trains word2vec embeddings to `vec.txt`.
 - `run_word2vec.sh`, `word2vec_training.txt`, `vocab.txt`, `embeddings.txt` — earlier embedding experiments.
-- `sentences_*` — train/validation/test splits for the language model.
+- `sentences_*.txt` — train/validation/test splits for the language model.
 - `reports/` — markdown report and PDF build script.
 
 ## Requirements

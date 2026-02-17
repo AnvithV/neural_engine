@@ -291,9 +291,11 @@ def parse_hidden_layers(value: str) -> Tuple[int, ...]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train and evaluate the language model.")
     parser.add_argument("--embedding-path", default="vec.txt", help="path to word2vec txt embeddings")
-    parser.add_argument("--train-path", default="sentences_train", help="training sentences file")
-    parser.add_argument("--validation-path", default="sentences_validation", help="validation sentences file")
-    parser.add_argument("--test-path", default="sentences_test", help="test sentences file")
+    parser.add_argument("--train-path", default="sentences_train.txt", help="training sentences file")
+    parser.add_argument(
+        "--validation-path", default="sentences_validation.txt", help="validation sentences file"
+    )
+    parser.add_argument("--test-path", default="sentences_test.txt", help="test sentences file")
     parser.add_argument("--activation", default="tanh", choices=["relu", "tanh", "logistic", "identity"])
     parser.add_argument(
         "--hidden-layers",
