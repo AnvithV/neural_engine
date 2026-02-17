@@ -1,7 +1,7 @@
 #!/bin/bash
 
-word2vec -train bigger.txt \
-  -output vec.txt \
+word2vec -train combined_corpus.txt \
+  -output word_vectors.txt \
   -size 100 \
   -window 4 \
   -sample 1e-4 \

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Standalone script to train a simple neural language model using fixed word2vec
-embeddings (see train_embeddings.sh) and evaluate it on held-out data.
+embeddings (see train_word_vectors.sh) and evaluate it on held-out data.
 It also exposes helper routines for surprisal analysis and sampling so
 you can reproduce the results from the command line.
 """
@@ -43,7 +43,7 @@ def load_embeddings(filename: str) -> Dict[str, np.ndarray]:
 
 
 def load_vocabulary(filename: str) -> Tuple[Dict[str, int], Dict[int, str]]:
-    """Returns two dictionaries -- word->id and id->word -- loaded from vec.txt."""
+    """Returns two dictionaries -- word->id and id->word -- loaded from word_vectors.txt."""
     vocab_lookup: Dict[str, int] = {"<START>": 0, "</s>": 1, "<UNK>": 2}
     index_to_word: Dict[int, str] = {0: "<START>", 1: "</s>", 2: "<UNK>"}
 
@@ -290,12 +290,14 @@ def parse_hidden_layers(value: str) -> Tuple[int, ...]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train and evaluate the language model.")
-    parser.add_argument("--embedding-path", default="vec.txt", help="path to word2vec txt embeddings")
-    parser.add_argument("--train-path", default="sentences_train.txt", help="training sentences file")
     parser.add_argument(
-        "--validation-path", default="sentences_validation.txt", help="validation sentences file"
+        "--embedding-path", default="word_vectors.txt", help="path to word2vec txt embeddings"
     )
-    parser.add_argument("--test-path", default="sentences_test.txt", help="test sentences file")
+    parser.add_argument("--train-path", default="train_sentences.txt", help="training sentences file")
+    parser.add_argument(
+        "--validation-path", default="validation_sentences.txt", help="validation sentences file"
+    )
+    parser.add_argument("--test-path", default="test_sentences.txt", help="test sentences file")
     parser.add_argument("--activation", default="tanh", choices=["relu", "tanh", "logistic", "identity"])
     parser.add_argument(
         "--hidden-layers",

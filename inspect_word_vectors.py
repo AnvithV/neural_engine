@@ -27,7 +27,7 @@ def find_most_similar(word_embeddings, query):
 def main():
     word_embeddings = defaultdict(lambda: np.zeros(EMBEDDING_WIDTH))
 
-    with open("vec.txt") as infile:
+    with open("word_vectors.txt") as infile:
         next(infile)
         for line in infile:
             line = line.strip()

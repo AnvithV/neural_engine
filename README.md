@@ -15,19 +15,19 @@ This project trains a small neural language model on a classic-corpora dataset a
 - Generates example sentences from the trained model.
 
 ## Data sources
-- Text: NLTK `brown`, `gutenberg`, and `reuters` corpora (see `bigger_corpus.py`). Run `python3 bigger_corpus.py > bigger.txt` to regenerate the combined corpus.
-- Embeddings: 100-dim skip-gram word2vec trained via `train_embeddings.sh` to produce `vec.txt` (window=4, negative=5, iter=100). Vocabulary saved to `vocab.txt`.
-- Sentence splits: `sentences_train.txt`, `sentences_validation.txt`, `sentences_test.txt` provided in the repo.
+- Text: NLTK `brown`, `gutenberg`, and `reuters` corpora (see `build_combined_corpus.py`). Run `python3 build_combined_corpus.py > combined_corpus.txt` to regenerate the combined corpus.
+- Embeddings: 100-dim skip-gram word2vec trained via `train_word_vectors.sh` to produce `word_vectors.txt` (window=4, negative=5, iter=100). Vocabulary saved to `word_vocab.txt`.
+- Sentence splits: `train_sentences.txt`, `validation_sentences.txt`, `test_sentences.txt` provided in the repo.
 
 ## How it was accomplished
-1. **Embeddings:** Train word2vec on `bigger.txt`:
+1. **Embeddings:** Train word2vec on `combined_corpus.txt`:
    ```
-   bash train_embeddings.sh
+   bash train_word_vectors.sh
    ```
    (Requires the `word2vec` binary installed and NLTK corpora downloaded.)
-2. **Language model:** Use `neural_language_model.py` to train and evaluate:
+2. **Language model:** Use `train_neural_lm.py` to train and evaluate:
    ```
-   python3 neural_language_model.py \
+   python3 train_neural_lm.py \
      --activation tanh \
      --hidden-layers 100 \
      --epochs 10 \
@@ -44,18 +44,18 @@ This project trains a small neural language model on a classic-corpora dataset a
 - Sampling: `sample_from_model` draws tokens autoregressively until `</s>` or `max_len`.
 
 ## Reports
-- Read the narrative summary at `reports/report.md`.
+- Read the narrative summary at `reports/language_model_report.md`.
 - Build a PDF with pandoc/LaTeX:
   ```
-  bash reports/render_report.sh
+  bash reports/build_report_pdf.sh
   ```
 
 ## Repository layout
-- `neural_language_model.py` — CLI training/eval entrypoint.
-- `bigger_corpus.py` — emits text from NLTK corpora for word2vec training.
-- `train_embeddings.sh` — trains word2vec embeddings to `vec.txt`.
-- `run_word2vec.sh`, `word2vec_training.txt`, `vocab.txt`, `embeddings.txt` — earlier embedding experiments.
-- `sentences_*.txt` — train/validation/test splits for the language model.
+- `train_neural_lm.py` — CLI training/eval entrypoint.
+- `build_combined_corpus.py` — emits text from NLTK corpora for word2vec training.
+- `train_word_vectors.sh` — trains word2vec embeddings to `word_vectors.txt`.
+- `train_word_vectors_legacy.sh`, `legacy_training_corpus.txt`, `word_vocab.txt`, `legacy_word_vectors.txt` — earlier embedding experiments.
+- `*_sentences.txt` — train/validation/test splits for the language model.
 - `reports/` — markdown report and PDF build script.
 
 ## Requirements

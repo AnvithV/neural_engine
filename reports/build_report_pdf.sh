@@ -9,6 +9,5 @@ if ! command -v pandoc >/dev/null 2>&1; then
   exit 1
 fi
 
-pandoc report.md -o report.pdf --from markdown --pdf-engine=xelatex
-echo "Wrote $SCRIPT_DIR/report.pdf"
-
+pandoc language_model_report.md -o language_model_report.pdf --from markdown --pdf-engine=xelatex
+echo "Wrote $SCRIPT_DIR/language_model_report.pdf"
